@@ -1,6 +1,6 @@
 Finish README.md later.
 
-REQUIRES:
+# Install dependencies
 Google Chrome
 pip install requests
 pip install pandas
