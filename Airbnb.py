@@ -17,7 +17,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import PatternFill, Font, Border, Side
 
 #---!!!CHANGE AIRBNB URL HERE!!!---
-url = 'https://www.airbnb.com/s/Queens--Queens--NY/homes?adults=3&place_id=ChIJK1kKR2lDwokRBXtcbIvRCUE&refinement_paths%5B%5D=%2Fhomes&checkin=2024-05-10&checkout=2024-05-13&tab_id=home_tab&query=Queens%2C%20Queens%2C%20NY&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&price_filter_num_nights=3&channel=EXPLORE&ne_lat=40.7767044096394&ne_lng=-73.78217197288876&sw_lat=40.63808216917704&sw_lng=-73.93030173394027&zoom=12.012916102455694&zoom_level=12.012916102455694&search_by_map=true&search_type=user_map_move&source=structured_search_input_header'
+url = 'https://www.airbnb.com/s/Queens--Queens--NY/homes?adults=4&place_id=ChIJK1kKR2lDwokRBXtcbIvRCUE&refinement_paths%5B%5D=%2Fhomes&checkin=2024-05-10&checkout=2024-05-13&tab_id=home_tab&query=Queens%2C%20Queens%2C%20NY&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&price_filter_num_nights=3&channel=EXPLORE&ne_lat=40.7767044096394&ne_lng=-73.78217197288876&sw_lat=40.63808216917704&sw_lng=-73.93030173394027&zoom=12.012916102455694&zoom_level=12&search_by_map=true&search_type=filter_change&source=structured_search_input_header'
 
 s=Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=s)
@@ -148,7 +148,7 @@ for row in excelws.iter_rows():
 #EXCEL coloumn width
 excelws.column_dimensions[get_column_letter(1)].width = 500/12  # Name
 excelws.column_dimensions[get_column_letter(2)].width = 300/12  # Listing
-excelws.column_dimensions[get_column_letter(3)].width = 120/12  # Price
+excelws.column_dimensions[get_column_letter(3)].width = 130/12  # Price
 excelws.column_dimensions[get_column_letter(4)].width = 120/12  # Rating
 excelws.column_dimensions[get_column_letter(5)].width = 1500/12 # URL
 
