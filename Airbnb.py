@@ -104,8 +104,9 @@ while url:
     else:
         url = None
 
-
-#EXCEL LOGIC
+#EXCEL LOGIC 
+excelwrite['SortPrice'] = excelwrite['Price/Night'].str.extract('(\d+)').astype(int) # sorts price asc
+excelwrite = excelwrite.sort_values(by='SortPrice', ascending=True) # sorts price asc
 darkbg = PatternFill(start_color='F2F2F2', end_color='F2F2F2', fill_type='solid')
 lightbg = PatternFill(start_color='FFFFFF', end_color='FFFFFF', fill_type='solid')
 # DISABLED - fontcolor = Font(color='EBEBEB')
