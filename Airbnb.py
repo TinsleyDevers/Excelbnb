@@ -31,7 +31,7 @@ excelwrite = pd.DataFrame(columns=['Name', 'Listing', 'Price/Night', 'Rating', '
 
 while url:
     driver.get(url)
-    time.sleep(2)
+    time.sleep(2) # sleeps the page to allow it to load !!INCASE OF TIMEOUTS CHANGE THIS VALUE!!
 
     #wonton soup is probably my favorite
     soup = BeautifulSoup(driver.page_source, 'lxml')
