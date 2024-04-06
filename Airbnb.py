@@ -74,8 +74,8 @@ while url:
 
             #LISTING URLS
             listurl = item.select('[itemprop="url"]')
-            for list_element in listurl:
-                urlname = list_element.get('content')
+            for url_element in listurl:
+                urlname = url_element.get('content')
                 print(urlname)
                 row[4] = urlname
 
@@ -105,8 +105,10 @@ while url:
         url = None
 
 #EXCEL LOGIC 
-excelwrite['SortPrice'] = excelwrite['Price/Night'].str.extract('(\d+)').astype(int) # sorts price asc
-excelwrite = excelwrite.sort_values(by='SortPrice', ascending=True) # sorts price asc
+excelwrite['SortPrice'] = excelwrite['Price/Night'].str.extract(r'(\d+)').astype(int) # creates new sortprice column using price/night data
+excelwrite = excelwrite.sort_values(by='SortPrice', ascending=True) # sorts by sortprice which sorts price/night
+excelwrite.drop(columns=['SortPrice']) # drops the sortprice column
+
 darkbg = PatternFill(start_color='F2F2F2', end_color='F2F2F2', fill_type='solid')
 lightbg = PatternFill(start_color='FFFFFF', end_color='FFFFFF', fill_type='solid')
 # DISABLED - fontcolor = Font(color='EBEBEB')
@@ -145,7 +147,7 @@ for row in excelws.iter_rows():
     for cell in row:
         cell.border = border
 
-#EXCEL coloumn width
+#EXCEL coloumn widths
 excelws.column_dimensions[get_column_letter(1)].width = 500/12  # Name
 excelws.column_dimensions[get_column_letter(2)].width = 300/12  # Listing
 excelws.column_dimensions[get_column_letter(3)].width = 130/12  # Price
