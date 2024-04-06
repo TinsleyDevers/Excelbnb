@@ -17,7 +17,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import PatternFill, Font, Border, Side
 
 # ---!!!CHANGE AIRBNB URL HERE!!!---
-url = 'https://www.airbnb.com/s/Queens--Queens--NY/homes?adults=4&place_id=ChIJK1kKR2lDwokRBXtcbIvRCUE&refinement_paths%5B%5D=%2Fhomes&checkin=2024-05-10&checkout=2024-05-13&tab_id=home_tab&query=Queens%2C%20Queens%2C%20NY&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-04-01&monthly_length=3&monthly_end_date=2024-07-01&price_filter_input_type=0&price_filter_num_nights=3&channel=EXPLORE&ne_lat=40.7767044096394&ne_lng=-73.78217197288876&sw_lat=40.63808216917704&sw_lng=-73.93030173394027&zoom=12.012916102455694&zoom_level=12&search_by_map=true&search_type=filter_change&source=structured_search_input_header'
+url = 'https://www.airbnb.com/s/Los-Angeles--California--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-05-01&monthly_length=3&monthly_end_date=2024-08-01&price_filter_input_type=0&channel=EXPLORE&query=Los%20Angeles%2C%20CA&place_id=ChIJE9on3F3HwoAR9AhGJW_fL-I&date_picker_type=calendar&checkin=2024-06-13&checkout=2024-06-15&adults=5&source=structured_search_input_header&search_type=user_map_move&price_filter_num_nights=2&ne_lat=34.099506339796726&ne_lng=-118.32489778064303&sw_lat=34.07295547099822&sw_lng=-118.35086666078894&zoom=14.524921919759125&zoom_level=14.524921919759125&search_by_map=true'
 
 s=Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=s)
@@ -33,10 +33,15 @@ while url:
     driver.get(url)
     time.sleep(2) # sleeps the page to allow it to load !!INCASE OF TIMEOUTS CHANGE THIS VALUE!!
 
-    #wonton soup is probably my favorite
+    # wonton soup is probably my favorite
     soup = BeautifulSoup(driver.page_source, 'lxml')
 
     for item in soup.select('[itemprop="itemListElement"]'):
+        # checks if the listing is a "Available for similar dates" listing and skips it
+        similar_parent = item.find_parents(class_="f4kiyqs atm_2d_g2722k atm_gi_1lw5rbb atm_l8_5utakr atm_gi_goucad__oggzyc atm_l8_14vsfaa__oggzyc atm_gi_1lw5rbb__1v156lz atm_l8_5utakr__1v156lz dir dir-ltr")
+        if similar_parent:
+         continue
+        # stops at the 18th listing until next page
         if counter == 18:
             break
         try:
@@ -105,9 +110,9 @@ while url:
         url = None
 
 #EXCEL LOGIC 
-excelwrite['SortPrice'] = excelwrite['Price/Night'].str.extract(r'(\d+)').astype(int) # creates new sortprice column using price/night data
+excelwrite['SortPrice'] = excelwrite['Price/Night'].str.replace(r'[^\d.]', '', regex=True).astype(float) # creates new sortprice column using price/night data
 excelwrite = excelwrite.sort_values(by='SortPrice', ascending=True) # sorts by sortprice which sorts price/night
-excelwrite.drop(columns=['SortPrice']) # drops the sortprice column
+excelwrite.drop(columns=['SortPrice'], inplace=True) # drops the sortprice column
 
 darkbg = PatternFill(start_color='F2F2F2', end_color='F2F2F2', fill_type='solid')
 lightbg = PatternFill(start_color='FFFFFF', end_color='FFFFFF', fill_type='solid')
