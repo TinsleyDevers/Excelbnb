@@ -23,7 +23,7 @@ s=Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=s)
 response = requests.get(url)
 
-#makes sure to stop at the 18th listing on airbnb to not include the "Available for similar dates" listings
+# makes sure to stop at the 18th listing on airbnb to not include the "Available for similar dates" listings
 counter = 0
 
 #EXCEL writes the headers
@@ -90,7 +90,7 @@ while url:
         except Exception as e:
             print(e)
 
-    #try to push next page button if not avail then boom done
+    # try to push next page button if not avail then boom done
     nextpage = soup.find("a", attrs={"aria-label": "Next"})
     try:
         element = WebDriverWait(driver, 2).until(
