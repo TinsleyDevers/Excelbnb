@@ -25,7 +25,7 @@
 `url = 'your Airbnb link here'`<br>
 - Replace 'your Airbnb link here' with the URL of the Airbnb search result you want to analyze.<br>
 - To run the application, execute the script in your terminal or command prompt:<br>
-`python excelbnb.py`<br>
+`python Excelbnb.py`<br>
 - Wait for the automated Chrome browser window to close automatically after fetching the data. Once the script completes its execution, you'll find the Airbnb.xlsx file in your directory, containing the structured data.
 
 ## Contributing
