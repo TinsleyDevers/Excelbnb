@@ -32,4 +32,4 @@
 Contributions to Excelbnb are welcome! Feel free to fork the repository, make your changes, and submit a pull request.
 
 ### License
-[MIT License](https://github.com/TinsleyDevers/Excelbnb/blob/main/LICENSE)
+[MIT License](https://github.com/TinsleyDevers/Excelbnb?tab=MIT-1-ov-file#readme)
