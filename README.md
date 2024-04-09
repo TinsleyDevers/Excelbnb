@@ -33,3 +33,6 @@ Contributions to Excelbnb are welcome! Feel free to fork the repository, make yo
 
 ### License
 [MIT License](https://github.com/TinsleyDevers/Excelbnb?tab=MIT-1-ov-file#readme)
+
+### Repo Activity
+![Alt](https://repobeats.axiom.co/api/embed/f91db6979601f2b28da3f2e547a61f4df7b0d929.svg "Repobeats analytics image")
